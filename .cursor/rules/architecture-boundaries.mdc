@@ -15,6 +15,8 @@ alwaysApply: false
 
 1. Run `yarn test:code` to catch existing restricted-import lint rules.
 2. Check changed files and verify dependency direction manually when lint coverage is incomplete:
+   - no `@excalidraw/math` imports inside `packages/common/**`
+   - no `@excalidraw/element` imports inside `packages/common/**` or `packages/math/**`
    - no `@excalidraw/excalidraw` imports inside `packages/common/**`, `packages/math/**`, or `packages/element/**`
    - no `excalidraw-app/**` imports from any `packages/**` module
 3. Confirm new editor behavior is implemented in `packages/excalidraw` while app-shell wiring stays in `excalidraw-app`.
