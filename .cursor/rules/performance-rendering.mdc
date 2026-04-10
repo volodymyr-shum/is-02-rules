@@ -1,0 +1,18 @@
+---
+description: Performance guardrails for render and interaction paths
+globs: "{packages/excalidraw/**,excalidraw-app/**}/*.{ts,tsx}"
+alwaysApply: false
+---
+
+# Performance Rendering
+
+- Avoid heavy work in render loops and high-frequency event handlers.
+- Reuse computed values where possible in hot code paths.
+- Keep scene updates incremental; avoid full recompute when a local update is enough.
+- Prefer profiling-driven optimization over speculative micro-optimizations.
+
+## How to verify
+
+1. Run the relevant UI flow locally and check for interaction jank.
+2. Validate that changed handlers do not allocate unnecessary large objects each frame.
+3. Run `yarn build` to ensure no bundling regressions are introduced by changes.

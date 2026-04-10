@@ -1,0 +1,18 @@
+---
+description: TypeScript strictness and domain-safe types for Excalidraw
+globs: "packages/**/*.{ts,tsx}"
+alwaysApply: false
+---
+
+# TypeScript Safety
+
+- Prefer explicit types at module boundaries; avoid implicit `any`.
+- Use `import type` for type-only imports to keep runtime output clean.
+- Prefer domain types from workspace packages (for example geometry/editor types) instead of ad hoc object shapes.
+- Keep scene-related updates immutable unless a dedicated helper explicitly allows mutation.
+
+## How to verify
+
+1. Run `yarn test:typecheck`.
+2. Run `yarn test:code` and check for `@typescript-eslint/no-explicit-any` violations.
+3. Spot-check changed imports and convert runtime imports to `import type` where appropriate.

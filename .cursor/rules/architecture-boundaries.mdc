@@ -1,0 +1,18 @@
+---
+description: Enforce Excalidraw monorepo boundaries and state flow
+globs: "{packages/**,excalidraw-app/**}/*.{ts,tsx}"
+alwaysApply: false
+---
+
+# Architecture Boundaries
+
+- Keep dependency direction: `@excalidraw/common` -> `@excalidraw/math` -> `@excalidraw/element` -> `@excalidraw/excalidraw` -> `excalidraw-app`.
+- Route editor state changes through actions/state abstractions; avoid ad hoc global stores in feature files.
+- Keep app shell concerns in `excalidraw-app`; reusable editor logic belongs in `packages/excalidraw`.
+- Avoid reverse imports from lower-level packages to higher-level app modules.
+
+## How to verify
+
+1. Run `yarn test:code` and resolve any restricted import warnings.
+2. Search changed files for imports from higher-level packages into lower-level ones.
+3. Confirm new editor behavior is implemented in package code, not duplicated in app shell.

@@ -1,0 +1,18 @@
+---
+description: React component conventions for editor and app UI
+globs: "{packages/excalidraw/**,excalidraw-app/**}/*.tsx"
+alwaysApply: false
+---
+
+# React Component Patterns
+
+- Prefer functional components and hooks.
+- Keep canvas/render-loop logic isolated from toolbar/modal UI concerns.
+- Use stable callbacks/memoization only where render churn is measurable.
+- Keep component names and file names aligned for discoverability.
+
+## How to verify
+
+1. Run `yarn test:code` and address React/TS lint violations.
+2. Ensure new UI components include or update relevant tests.
+3. Confirm render-heavy components avoid unnecessary allocations in hot paths.

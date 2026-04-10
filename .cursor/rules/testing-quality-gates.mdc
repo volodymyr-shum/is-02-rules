@@ -1,0 +1,19 @@
+---
+description: Testing and quality gates before merge
+globs: "{packages/**,excalidraw-app/**}/*.{ts,tsx,js}"
+alwaysApply: false
+---
+
+# Testing and Quality Gates
+
+- Add or update tests for behavior changes.
+- Keep lint, typecheck, and formatting clean before opening PRs.
+- Prefer focused test names that describe behavior.
+- Do not merge code that passes locally only by disabling checks.
+
+## How to verify
+
+1. Run `yarn test:code`.
+2. Run `yarn test:typecheck`.
+3. Run `yarn test:app --watch=false` for impacted areas.
+4. Optionally run `yarn test:all` before final push.
