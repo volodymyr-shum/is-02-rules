@@ -8,6 +8,11 @@ alwaysApply: false
 
 - Never commit secrets or tokens to the repository.
 - Treat imported scene/library content as untrusted input.
+- Sanitize SVG import/export paths to prevent XSS from user-controlled content.
+- Validate scene serialization/deserialization payloads (whitelist allowed shapes, sizes, and references).
+- Require secure collaboration flows: preserve end-to-end encryption assumptions and avoid plaintext fallbacks.
+- Ensure Firebase real-time access rules prevent unauthorized room read/write operations.
+- Prefer restrictive Content Security Policy for embedded/external content surfaces.
 - Avoid dangerous dynamic execution patterns (`eval`, `new Function`).
 - Be cautious with raw HTML/SVG handling and sanitize untrusted content.
 
@@ -15,4 +20,6 @@ alwaysApply: false
 
 1. Search changes for `eval(`, `new Function`, and unsafe HTML insertion.
 2. Run `yarn test:code` for security-related lint signals.
-3. Confirm sensitive config files or credentials are not introduced in git diff.
+3. Verify scene import/export changes include validation and sanitization checks.
+4. Confirm collaboration/Firebase-related changes preserve auth and access constraints.
+5. Confirm sensitive config files or credentials are not introduced in git diff.

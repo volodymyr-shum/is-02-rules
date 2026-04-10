@@ -13,6 +13,9 @@ alwaysApply: false
 
 ## How to verify
 
-1. Run `yarn test:code` and resolve any restricted import warnings.
-2. Search changed files for imports from higher-level packages into lower-level ones.
-3. Confirm new editor behavior is implemented in package code, not duplicated in app shell.
+1. Run `yarn test:code` to catch existing restricted-import lint rules.
+2. Check changed files and verify dependency direction manually when lint coverage is incomplete:
+   - no `@excalidraw/excalidraw` imports inside `packages/common/**`, `packages/math/**`, or `packages/element/**`
+   - no `excalidraw-app/**` imports from any `packages/**` module
+3. Confirm new editor behavior is implemented in `packages/excalidraw` while app-shell wiring stays in `excalidraw-app`.
+4. If violations recur, extend `no-restricted-imports` in `.eslintrc.json` to enforce the full chain automatically.
